@@ -1,0 +1,80 @@
+.collapsible-card form {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* @media (min-width: 768px) {
+  .collapsible-card form {
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+} */
+
+.collapsible-card {
+  font-family: "Nunito", sans-serif;
+  max-width: 700px;
+  min-width: 250px;
+  background: white;
+  border-radius: 8px;              
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  padding: 35px;          
+}
+
+.heading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading-wrapper button {
+  margin-left: auto;
+  background: rgb(233, 233, 233);
+  border-radius: 15px;
+  padding: 0.7rem;
+  border: none;
+}
+
+button img {
+  width: 25px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.collapsible-card hr {
+  margin: 10px 0 20px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
+/* collapse animation */
+.card-children {
+  overflow: hidden;
+  max-height: 0;            
+  opacity: 0;             
+  transition: max-height 0.3s ease, opacity 0.3s ease;  
+}
+
+.card-children.shown {
+  max-height: 1000px; 
+  opacity: 1;
+}
+
+.heading-wrapper button img {
+  width: 25px;
+  transition: transform 0.3s ease;
+}
+
+.heading-wrapper button img.rotated {
+  transform: rotate(180deg);
+}
