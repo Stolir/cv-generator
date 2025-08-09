@@ -1,0 +1,24 @@
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  font-family: "Nunito", sans-serif;
+  min-width: 180px;
+  width: 300px;
+  flex: 1 1 200px;
+}
+
+label {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+input { 
+  padding: 0.5rem;
+  border: 1px grey black;
+  
+}
+
+input:focus {
+  outline: none;
+  border: 0.15rem solid navy;
+}
