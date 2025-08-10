@@ -2,6 +2,8 @@ import { useState } from "react";
 import ContactForm from "./ContactForm";
 import { set } from "lodash";
 import { defaultUserData } from "../data/userInformation";
+import ExperienceForm from "./ExperienceForm";
+import "../styles/Layout.css"
 
 // const userData = {
 //   contact: {
@@ -36,9 +38,11 @@ import { defaultUserData } from "../data/userInformation";
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
 
+  const testData = userData.experience.details
+
   const handleChange = (fieldPath, value) => {
-    console.log("working")
-    setUserData((prev) => {
+      console.log("working")
+      setUserData((prev) => {
       const copy = {...prev};
       console.log(copy)
       set(copy, fieldPath, value)
@@ -49,13 +53,21 @@ function Layout() {
 
 
   return (
-    <div className="grid-container">
-      <ContactForm 
-        userContact={userData.contact}
-        path="contact"
-        handleChange={handleChange}
-      />
-      {/* <div>{userData.contact.address.city}</div> */}
+    <div className="grid-container" id="layout">
+      <div className="forms-wrapper">
+        <ContactForm
+          userContact={userData.contact}
+          path="contact"
+          handleChange={handleChange}
+        />
+        <ExperienceForm
+          userExperience={userData.experience}
+          path="experience"
+          handleChange={handleChange}
+        />
+        <div>{userData.contact.address.city}</div>
+        <div>{userData.experience[0].details}</div>
+      </div>
     </div>
   )
 } 
