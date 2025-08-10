@@ -29,6 +29,10 @@
   align-items: center;
 }
 
+.heading-wrapper:hover {
+  cursor: pointer;
+}
+
 .heading-wrapper button {
   margin-left: auto;
   background: rgb(233, 233, 233);

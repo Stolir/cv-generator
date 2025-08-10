@@ -12,9 +12,9 @@ function CollapasibleCard({ children, header }) {
 
   return (
     <div className="collapsible-card">
-      <div className="heading-wrapper">
+      <div className="heading-wrapper" onClick={handleCollapse}>
         <h1>{header}</h1>
-        <button onClick={handleCollapse}><img className={showDetails ? 'rotated' : ''} src={downArrow} alt="down arrow icon" /></button>
+        <button><img className={showDetails ? 'rotated' : ''} src={downArrow} alt="down arrow icon" /></button>
       </div>
 
       <div 
