@@ -1,0 +1,22 @@
+.checkbox-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  position: absolute;
+  margin-top: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-wrapper:hover,
+.checkbox-wrapper:hover input,
+.checkbox-wrapper:hover label {
+  cursor: pointer;
+}
+
+.checkbox-wrapper:hover input {
+  min-height: none;
+}
