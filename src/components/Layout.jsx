@@ -4,6 +4,7 @@ import { set } from "lodash";
 import { defaultUserData } from "../data/userInformation";
 import ExperienceForm from "./ExperienceForm";
 import "../styles/Layout.css"
+import Header from "./Header";
 
 // const userData = {
 //   contact: {
@@ -53,7 +54,8 @@ function Layout() {
 
 
   return (
-    <div className="grid-container" id="layout">
+    <div id="layout">
+      <Header></Header>
       <div className="forms-wrapper">
         <ContactForm
           userContact={userData.contact}
@@ -65,8 +67,8 @@ function Layout() {
           path="experience"
           handleChange={handleChange}
         />
-        <div>{userData.contact.address.city}</div>
-        <div>{userData.experience[0].details}</div>
+        {/* <div>{userData.contact.address.city}</div>
+        <div>{userData.experience[0].details}</div> */}
       </div>
     </div>
   )
