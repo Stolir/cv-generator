@@ -4,7 +4,7 @@
   align-items: center;
   gap: 5px;
   position: absolute;
-  margin-top: 5px;
+  top: 70px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -19,4 +19,13 @@
 
 .checkbox-wrapper:hover input {
   min-height: none;
+}
+
+.end-date {
+  position: relative;
+  display: flex;
+  min-width: 180px;
+  width: 300px;
+  flex: 1 1 200px;
+  margin-bottom: 10px;
 }
