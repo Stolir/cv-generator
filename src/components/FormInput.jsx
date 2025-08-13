@@ -13,7 +13,13 @@ function FormInput({fieldName, label, handleChange, path, type, value, placehold
         placeholder={placeholder}
         readOnly={readOnly}
         onChange={(e) => {
-          handleChange(getPath(path, fieldName, index), e.target.value)
+          if (path === "experience") {
+            handleChange(fieldName, e.target.value)
+          }
+          else {
+            handleChange(getPath(path, fieldName, index), e.target.value)
+          }
+          
         }}
         />
     </div>
