@@ -1,23 +1,17 @@
 export const defaultUserData = {
   contact: {
-    firstName: 'John',
-    lastName: 'Doe',
-    phoneNumber: '+1 234 567 890',
-    email: 'john.doe@example.com',
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
     address: {
-      city: 'New York',
-      country: 'USA',
-      postCode: '10001'
+      city: '',
+      country: '',
+      postCode: ''
     }
   },
   experience: [
-    {
-      jobTitle: 'Frontend Developer',
-      company: 'TechCorp',
-      startDate: '2021-01',
-      endDate: '2023-06',
-      description: 'Developed user interfaces using React and optimized performance.'
-    }
+
   ],
   education: [
     {
