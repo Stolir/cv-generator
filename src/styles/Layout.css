@@ -1,0 +1,35 @@
+#layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  #layout {
+    display: grid;
+    grid-template: min-content 1fr / 1fr 1fr;
+    grid-template-areas: 
+      "header header"
+      "forms preview";
+  }
+
+  header {
+    grid-area: header;
+  }
+
+  .forms-wrapper {
+    grid-area: forms;
+    padding: 3rem 5rem;
+  }
+
+  .preview {
+    grid-area: preview;
+  }
+}
+
