@@ -29,3 +29,23 @@
   flex: 1 1 200px;
   margin-bottom: 10px;
 }
+
+.form-controls {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.form-controls button {
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  padding: 1rem;
+}
+
+.form-controls button:hover {
+  background-color: rgb(167, 167, 167);
+  color: black;
+}

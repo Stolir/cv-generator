@@ -6,36 +6,6 @@ import ExperienceForm from "./ExperienceForm";
 import "../styles/Layout.css"
 import Header from "./Header";
 
-// const userData = {
-//   contact: {
-//     // fill out with dummy data for now instead of ''
-//     firstName: '',
-//     surname: '',
-//     phoneNumber: '',
-//     email: '',
-//     address: {
-//       country: '',
-//       city: '',
-//       postCode: ''
-//     }
-//   },
-//   experience: [
-    
-//   ],
-//   education: [
-//     // .. more data
-//   ],
-//   skills: [
-//     // .. more data
-//   ], 
-//   languages: [
-//     {
-//       language: "",
-//       description: ""
-//     }
-//   ],
-//   summary: "",
-// }
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
 
@@ -48,6 +18,46 @@ function Layout() {
     })
   }
 
+  // experience information that's currently ediatble by the user. 
+  const [experienceId, setExperienceId] = useState(0)
+
+
+  const [currentExperience, setCurrentExperience] = useState({
+    id: 0,
+    jobTitle: '',
+    company: '',
+    startDate: '',
+    endDate: '',
+    location: '',
+    details: ''
+  })
+
+  const handleChangeCurrentExperience = (fieldName, value) => {
+      setCurrentExperience((prev) => {
+      const copy = {...prev};
+      set(copy, fieldName, value)
+      console.log(copy)
+      return copy;
+    })
+  }
+
+  const handleAddExperience = (index) => {
+    handleChange(`experience[${index}]`, currentExperience)
+    setExperienceId(prevId => {
+      const newId = prevId + 1;
+      setCurrentExperience({
+      id: newId,
+      jobTitle: '',
+      company: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      details: ''
+      })
+      return newId;
+    })
+
+  }
 
   return (
     <div id="layout">
@@ -59,9 +69,12 @@ function Layout() {
           handleChange={handleChange}
         />
         <ExperienceForm
-          userExperience={userData.experience}
+          userExperience={currentExperience}
           path="experience"
-          handleChange={handleChange}
+          handleChange={handleChangeCurrentExperience}
+          handleAdd={handleAddExperience}
+          index={userData.experience.length}
+          addedExperience={userData.experience}
         />
         {/* <div>{userData.contact.address.city}</div>
         <div>{userData.experience[0].details}</div> */}
