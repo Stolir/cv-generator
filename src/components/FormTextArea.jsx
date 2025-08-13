@@ -1,22 +1,35 @@
 import '../styles/FormTextArea.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { getPath } from '../utils/helper'
 
 
-function FormTextArea({ children, fieldName, label, handleChange, path, type, value, placeholder, index = null }) {
+function FormTextArea({ children, fieldName, label, handleChange, path, value, placeholder, index = null }) {
 
-  const [text, setText] = useState(() => {
-    if (value) { 
-      return value;
-    }
-    else { return '• '}
-  })
+  const [text, setText] = useState(value)
+
+//   useEffect(() => {
+//   if (!value) {
+//     setText('• ');
+//   }
+// }, [value]);
 
   const textareaRef = useRef(null);
 
   const handleText = (e) => {
-    handleChange(getPath(path, fieldName, index), e.target.value)
-    setText(e.target.value)
+  let newValue = e.target.value;
+
+  // Detect "- " and replace with "• "
+  if (newValue.endsWith('- ')) {
+    newValue = newValue.slice(0, -2) + '• ';
+  }
+
+    if (path === "experience") {
+      handleChange(fieldName, newValue)
+    }
+    else {
+      handleChange(getPath(path, fieldName, index), newValue)
+    }
+    setText(newValue)
   }
 
   const handleNewLine = (e) => {
@@ -32,7 +45,6 @@ function FormTextArea({ children, fieldName, label, handleChange, path, type, va
       const newText = before + '\n• ' + after;
       setText(newText);
 
-      // After updating text, move cursor after inserted bullet
       // Delay required because setState is async
       setTimeout(() => {
         textarea.selectionStart = textarea.selectionEnd = selectionStart + 3; // length of '\n• '
@@ -48,8 +60,11 @@ function FormTextArea({ children, fieldName, label, handleChange, path, type, va
         {...(index !== null && {index})}
         path={path}
         value={text}
+        placeholder={placeholder}
         onKeyDown={handleNewLine}
-        onChange={handleText}
+        onChange={(e) => {
+          handleText(e)
+        }}
         // textarea specific
         rows={10}
         cols={40}
