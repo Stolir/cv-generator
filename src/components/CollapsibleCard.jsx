@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../styles/CollapsibleCard.css";
-import downArrow from "../assets/down-arrow.svg"
+import downArrowB from "../assets/down-arrow-black.svg"
 
 function CollapasibleCard({ children, header }) {
 
@@ -14,7 +14,7 @@ function CollapasibleCard({ children, header }) {
     <div className="collapsible-card">
       <div className="heading-wrapper" onClick={handleCollapse}>
         <h1>{header}</h1>
-        <button><img className={showDetails ? 'rotated' : ''} src={downArrow} alt="down arrow icon" /></button>
+        <button><img className={showDetails ? 'rotated' : ''} src={downArrowB} alt="down arrow icon" /></button>
       </div>
 
       <div 
