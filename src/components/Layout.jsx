@@ -39,13 +39,9 @@ import Header from "./Header";
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
 
-  const testData = userData.experience.details
-
   const handleChange = (fieldPath, value) => {
-      console.log("working")
       setUserData((prev) => {
       const copy = {...prev};
-      console.log(copy)
       set(copy, fieldPath, value)
       console.log(copy)
       return copy;

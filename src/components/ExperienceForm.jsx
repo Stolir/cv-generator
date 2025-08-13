@@ -4,13 +4,26 @@ import { useState } from "react";
 import FormTextArea from "./FormTextArea";
 import '../styles/ExperienceForm.css' 
 import { getPath } from "../utils/helper";
+import EditPanel from "./EditPanel";
 
 function ExperienceForm({ userExperience, handleChange, path }) {
 
+
   const [index, setIndex] = useState(0);
 
-  const handleSubmit = () => {
-    setIndex(userExperience.length);
+  const experienceTemplate = {
+    id: index + 1,
+    jobTitle: '',
+    company: '',
+    startDate: '',
+    endDate: '',
+    location: '',
+    details: ''
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIndex(userExperience.length - 1);
   }
 
   const [endDateType, setEndDateType] = useState(() => {
@@ -36,14 +49,18 @@ function ExperienceForm({ userExperience, handleChange, path }) {
       handleChange(getPath(path, 'endDate', index), e.target.value)
       setEndDateType('month')
     }
-    
-    
-    
+  }
+
+  const handleAdd = (addedData) => {
+    const copy = {...addedData}
+    handleChange(path, [...userExperience, experienceTemplate])
   }
 
   return (
     <CollapasibleCard header="Experience">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => {
+        handleSubmit(e)
+      }}>
         <FormInput 
           fieldName="jobTitle"
           label="Job Title"
@@ -54,7 +71,7 @@ function ExperienceForm({ userExperience, handleChange, path }) {
           value={userExperience[index].jobTitle}
         />
          <FormInput 
-          fieldName="comapny"
+          fieldName="company"
           label="Company"
           handleChange={handleChange}
           path={path}
@@ -113,6 +130,15 @@ function ExperienceForm({ userExperience, handleChange, path }) {
           index={index}
           value={userExperience[index].details}
         />
+        <div className="form-controls">
+          <button>View Added</button>
+          <button 
+          onClick={() => {
+            handleAdd(userExperience[index])}
+          }
+          type="submit"
+          >Add</button>
+        </div>
       </form>
     </CollapasibleCard>
   )
