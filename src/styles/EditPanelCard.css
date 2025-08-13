@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5rem;
+  padding: 1rem;
+  background-color: rgb(243, 243, 243);
+  border-radius: 8px;
+}
+
+.information { 
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+}
+
+.title {
+  font-weight: 600;
+}
+
+.company, .date {
+  color: grey;
+  
+}
+
+.controls {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 0.2rem;
+  margin-left: auto;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+
+
+.controls button {
+  background: none;
+  border: none;
+}
+
+.controls img {
+  width: 20px;
+}
