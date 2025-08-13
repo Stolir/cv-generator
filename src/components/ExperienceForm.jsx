@@ -5,6 +5,7 @@ import FormTextArea from "./FormTextArea";
 import '../styles/ExperienceForm.css' 
 import { getPath } from "../utils/helper";
 import EditPanel from "./EditPanel";
+import EditPanelCard from "./EditPanelCard";
 
 function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, addedExperience }) {
 
@@ -38,6 +39,13 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
     }
   }
   
+  const [editPanelStatus, setEditPanelStatus] = useState(false);
+
+  const toggleEditPanel = () => {
+    console.log(addedExperience.length)
+    setEditPanelStatus(editPanelStatus ? false : true)
+  }
+
   return (
     <>
       <CollapasibleCard header="Experience">
@@ -118,13 +126,16 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
             placeholder={"To insert new bullet point type '-' followed by a space, or press enter."}
           />
           <div className="form-controls">
-            <button>View Added</button>
-            <button 
-            type="submit"
-            >Add</button>
+            <button type="button" onClick={toggleEditPanel}>View Added</button>
+            <button type="submit">Add</button>
           </div>
         </form>
       </CollapasibleCard>
+      <EditPanel 
+        addedExperience={addedExperience} 
+        toggleDisplay={toggleEditPanel}
+        shown={editPanelStatus}
+      />
     </>
   )
 }
