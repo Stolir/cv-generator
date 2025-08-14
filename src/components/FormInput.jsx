@@ -7,7 +7,6 @@ function FormInput({fieldName, label, handleChange, path, type, value, placehold
     <div className={`input-wrapper ${fieldName}`}>
       <label>{label}</label>
       <input 
-        {...(index && {index})}
         type={type}
         value={value}
         placeholder={placeholder}

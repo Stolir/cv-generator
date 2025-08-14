@@ -45,7 +45,19 @@
   padding: 1rem;
 }
 
-.form-controls button:hover {
+.form-controls button:disabled {
+  background-color: rgba(0, 0, 0, 0.295);
+}
+
+.form-controls button:disabled:hover {
+  background-color: rgba(0, 0, 0, 0.295);
+  color: white;
+  cursor: not-allowed;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .form-controls button:hover {
   background-color: rgb(167, 167, 167);
   color: black;
+}
 }

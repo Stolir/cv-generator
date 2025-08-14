@@ -1,17 +1,11 @@
 import '../styles/FormTextArea.css'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { getPath } from '../utils/helper'
 
 
 function FormTextArea({ children, fieldName, label, handleChange, path, value, placeholder, index = null }) {
 
   const [text, setText] = useState(value)
-
-//   useEffect(() => {
-//   if (!value) {
-//     setText('• ');
-//   }
-// }, [value]);
 
   const textareaRef = useRef(null);
 

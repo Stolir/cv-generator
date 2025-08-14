@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ContactForm from "./ContactForm";
-import { set } from "lodash";
+import { set, pullAt } from "lodash";
 import { defaultUserData } from "../data/userInformation";
 import ExperienceForm from "./ExperienceForm";
 import "../styles/Layout.css"
@@ -11,10 +11,26 @@ function Layout() {
 
   const handleChange = (fieldPath, value) => {
       setUserData((prev) => {
-      const copy = {...prev};
-      set(copy, fieldPath, value)
-      console.log(copy)
-      return copy;
+        let copy = {...prev};
+        if (value === undefined) {
+          const match = fieldPath.match(/^(\w+)\[(\d+)\]$/);
+          if (match) {
+          const arrayName = match[1];
+          const index = parseInt(match[2], 10);
+
+          if (Array.isArray(copy[arrayName])) {
+            const newArray = [...copy[arrayName]];
+            pullAt(newArray, index);
+            copy[arrayName] = newArray; 
+          }
+          } else {
+          console.warn('Invalid fieldPath for delete:', fieldPath);
+          }
+        } else {
+          set(copy, fieldPath, value)
+          console.log(copy)
+        }
+      return copy;  
     })
   }
 
@@ -32,21 +48,26 @@ function Layout() {
     details: ''
   })
 
-  const handleChangeCurrentExperience = (fieldName, value) => {
+  // if passed item is object replace entire obj with new values otherwise edit specific field
+  const handleChangeCurrentExperience = (item, value) => {
+    if (typeof item === 'object' && item) {
+      setCurrentExperience(item)
+    } else {
       setCurrentExperience((prev) => {
       const copy = {...prev};
-      set(copy, fieldName, value)
+      set(copy, item, value)
       console.log(copy)
       return copy;
-    })
+    })      
+    }
   }
 
-  const handleAddExperience = (index) => {
+  const handleAddExperience = (index, id) => {
     handleChange(`experience[${index}]`, currentExperience)
     setExperienceId(prevId => {
       const newId = prevId + 1;
       setCurrentExperience({
-      id: newId,
+      id: id ?? newId,
       jobTitle: '',
       company: '',
       startDate: '',
@@ -56,7 +77,6 @@ function Layout() {
       })
       return newId;
     })
-
   }
 
   return (
@@ -75,6 +95,7 @@ function Layout() {
           handleAdd={handleAddExperience}
           index={userData.experience.length}
           addedExperience={userData.experience}
+          handleDeletion={handleChange}
         />
         {/* <div>{userData.contact.address.city}</div>
         <div>{userData.experience[0].details}</div> */}
