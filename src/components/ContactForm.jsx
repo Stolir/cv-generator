@@ -33,12 +33,30 @@ function ContactForm({ userContact, handleChange, path}) {
           handleChange={handleChange}
         />
           <FormInput 
+          fieldName={"email"}
+          label={"Email Address"}
+          path={path}
+          type="email"
+          value={userContact.phoneNumber}
+          placeholder="brucewayne@peacemaintainers.co"
+          handleChange={handleChange}
+        />
+          <FormInput 
           fieldName={"address.city"}
           label={"City"}
           path={path}
           type="text"
           value={userContact.address.city}
           placeholder="Gotham"
+          handleChange={handleChange}
+        />
+          <FormInput 
+          fieldName={"address.postCode"}
+          label={"Postal Code"}
+          path={path}
+          type="text"
+          value={userContact.address.postCode}
+          placeholder="12345"
           handleChange={handleChange}
         />
          <FormInput 
@@ -48,15 +66,6 @@ function ContactForm({ userContact, handleChange, path}) {
           type="text"
           value={userContact.address.country}
           placeholder="United States"
-          handleChange={handleChange}
-        />
-         <FormInput 
-          fieldName={"address.postCode"}
-          label={"Postal Code"}
-          path={path}
-          type="text"
-          value={userContact.address.postCode}
-          placeholder="12345"
           handleChange={handleChange}
         />
       </form>
