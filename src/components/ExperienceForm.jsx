@@ -3,15 +3,14 @@ import FormInput from "./FormInput";
 import { useState } from "react";
 import FormTextArea from "./FormTextArea";
 import '../styles/ExperienceForm.css' 
-import { getPath } from "../utils/helper";
 import EditPanel from "./EditPanel";
-import EditPanelCard from "./EditPanelCard";
 
 function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, addedExperience }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAdd(index)
+    setEndDateType('month')
   }
 
   const [endDateType, setEndDateType] = useState(() => {
