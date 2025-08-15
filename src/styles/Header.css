@@ -2,8 +2,6 @@ header {
   width: 100%;
   background-color: black;
   padding: 1rem 5rem;
-  position: sticky;
-  top: 0;
 }
 
 .logo {
