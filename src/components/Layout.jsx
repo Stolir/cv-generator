@@ -5,6 +5,8 @@ import { defaultUserData } from "../data/userInformation";
 import ExperienceForm from "./ExperienceForm";
 import "../styles/Layout.css"
 import Header from "./Header";
+import Resume from "./Resume";
+import Footer from "./Footer";
 
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
@@ -100,6 +102,8 @@ function Layout() {
         {/* <div>{userData.contact.address.city}</div>
         <div>{userData.experience[0].details}</div> */}
       </div>
+      <Resume data={userData} />
+      <Footer />
     </div>
   )
 } 
