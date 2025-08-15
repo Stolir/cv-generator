@@ -1,0 +1,21 @@
+footer {
+  width: 100%;
+  background-color: black;
+  padding: 1rem 5rem;
+  color: white;
+  font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+}
+
+footer a {
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+}
+
+footer img {
+  width: 24px;
+}
