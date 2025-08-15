@@ -1,0 +1,86 @@
+.resume {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "side main";
+  width: 100%;
+  max-width: 600px;
+  height: 700px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  font-family: "Saira";
+  margin: 1rem auto;
+}
+
+.side-area {
+  grid-area: side;
+  background-color: rgb(9, 115, 129);
+  color: white;
+  gap: 2rem;
+}
+
+.main-area {
+  grid-area: main;
+  color: rgb(9, 115, 129);
+  gap: 1rem;
+}
+
+.side-area, .main-area {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  font-size: 0.7rem;
+}
+
+.main-area h1, .side-area h1 {
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+.resume hr {
+  border: 1px black solid;
+}
+
+.resume .main-area hr {
+  border: none;
+  border-top: 1px black solid;
+}
+
+.main-area .name-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-area .name-container h1 {
+  letter-spacing: normal;
+  font-size: 1.6rem;
+  display: inline-block;
+}
+
+.main-area .last-name {
+  color: black;
+}
+
+.main-area img {
+  width: 17px;
+}
+
+.side-area .details, .main-area details {
+  padding: 0.3rem 0.1rem;
+}
+
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  color: black;
+}
+
+.contact-container > div {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.contact-container .hidden {
+  display: none;
+}
