@@ -3,7 +3,7 @@ import "../styles/Header.css"
 function Header() {
   return (
     <header>
-      <div className="logo">Resumaris</div>
+      <div className="logo">RESUMARIS</div>
     </header>
   )
 }
