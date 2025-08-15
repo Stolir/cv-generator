@@ -37,7 +37,7 @@ function ContactForm({ userContact, handleChange, path}) {
           label={"Email Address"}
           path={path}
           type="email"
-          value={userContact.phoneNumber}
+          value={userContact.email}
           placeholder="brucewayne@peacemaintainers.co"
           handleChange={handleChange}
         />
