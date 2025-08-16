@@ -6,7 +6,7 @@ import MainSection from './MainSection';
 import SideSection from './SideSection';
 import { formatDate, formatDetails } from '../utils/helper';
 
-function Resume({ data, currentExperience }) {
+function Resume({ data }) {
   const address = data.contact.address;
 
   return (
