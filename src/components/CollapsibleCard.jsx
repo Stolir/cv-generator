@@ -2,7 +2,7 @@ import { useState } from "react";
 import "../styles/CollapsibleCard.css";
 import downArrowB from "../assets/down-arrow-black.svg"
 
-function CollapasibleCard({ children, header }) {
+function CollapsibleCard({ children, header }) {
 
   const [showDetails, setShowDetails] = useState(false) 
 
@@ -27,4 +27,4 @@ function CollapasibleCard({ children, header }) {
   )
 }
 
-export default CollapasibleCard;
+export default CollapsibleCard;
