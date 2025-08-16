@@ -43,7 +43,7 @@ function Layout() {
   const [currentExperience, setCurrentExperience] = useState({
     id: 0,
     jobTitle: '',
-    company: '',
+    employer: '',
     startDate: '',
     endDate: '',
     location: '',
@@ -71,7 +71,7 @@ function Layout() {
       setCurrentExperience({
       id: id ?? newId,
       jobTitle: '',
-      company: '',
+      employer: '',
       startDate: '',
       endDate: '',
       location: '',
@@ -99,10 +99,8 @@ function Layout() {
           addedExperience={userData.experience}
           handleDeletion={handleChange}
         />
-        {/* <div>{userData.contact.address.city}</div>
-        <div>{userData.experience[0].details}</div> */}
       </div>
-      <Resume data={userData} />
+      <Resume data={userData} currentExperience={currentExperience} />
       <Footer />
     </div>
   )
