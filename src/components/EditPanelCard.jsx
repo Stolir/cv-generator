@@ -3,13 +3,24 @@ import editButtonBlack from "../assets/edit-black.svg"
 import trashButtonBlack from "../assets/trash-black.svg"
 import "../styles/EditPanelCard.css"
 
-function EditPanelCard({data, handleEdit, handleDelete}) {
-  const date = `${formatDate(data.startDate)} - ${data.endDate === "Current" ? data.endDate : formatDate(data.endDate)}`
+function EditPanelCard({data, handleEdit, handleDelete, dataLabel}) {
+  let filteredData;
+  let date;
+
+  if (dataLabel === "experience") {
+    filteredData=(({ jobTitle, employer }) => ({ jobTitle, employer }))(data);
+    date = `${formatDate(data.startDate)} - ${data.endDate === "Current" ? data.endDate : formatDate(data.endDate)}`
+  } else if (dataLabel === "education") {
+    filteredData=(({ qualification, institution }) => ({ qualification, institution }))(data)
+    date = formatDate(data.graduationDate)
+  }
+
   return (
     <div className="card">
       <div className="information">
-        <p className="title">{data.jobTitle}</p>
-        <p className="company">{data.company}</p>
+        {Object.keys(filteredData).map(key => (
+          <p key={`data.id-${key}`} className={key}>{filteredData[key]}</p>
+        ))}
         <p className="date">{date}</p>
       </div>
       <div className="controls">
