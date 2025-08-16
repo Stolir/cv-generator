@@ -11,9 +11,9 @@
   gap: 2rem;
 }
 
-
-
-.preview {}
+.preview {
+  padding: 2rem;
+}
 
 @media (min-width: 1024px) {
   #layout {
@@ -37,9 +37,6 @@
 
   .preview {
     grid-area: preview;
-    margin: 3rem;
-    position: sticky;
-    top: 100px;
   }
 
   footer {

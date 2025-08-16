@@ -1,45 +1,47 @@
 .resume {
+  position: sticky;
+  top: 100px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas: "side main";
   width: 100%;
-  max-width: 600px;
-  height: 700px;
+  max-width: 550px;
+  min-width: 300px;
+  height: auto;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   font-family: "Saira";
+  font-size: clamp(10px, 1.5vw, 1rem);
   margin: 1rem auto;
+  /*A4 Aspect ratio*/
+  aspect-ratio: 1 / 1.4142;
 }
 
 .side-area {
   grid-area: side;
   background-color: rgb(9, 115, 129);
   color: white;
-  gap: 2rem;
+  gap: 2em;
 }
 
 .main-area {
   grid-area: main;
   color: rgb(9, 115, 129);
-  gap: 1rem;
+  gap: 1em;
 }
 
 .side-area, .main-area {
   display: flex;
-  padding: 1rem;
+  padding: 1em;
   flex-direction: column;
-  font-size: 0.7rem;
+  font-size: 0.7em;
 }
 
 .main-area h1, .side-area h1 {
-  font-size: 1rem;
+  font-size: 1em;
   letter-spacing: 2px;
 }
 
 .resume hr {
-  border: 1px black solid;
-}
-
-.resume .main-area hr {
   border: none;
   border-top: 1px black solid;
 }
@@ -51,7 +53,7 @@
 
 .main-area .name-container h1 {
   letter-spacing: normal;
-  font-size: 1.6rem;
+  font-size: 1.6em;
   display: inline-block;
 }
 
@@ -64,20 +66,20 @@
 }
 
 .side-area .details, .main-area details {
-  padding: 0.3rem 0.1rem;
+  padding: 0.3em 0.1em;
 }
 
 
 .contact-container {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.6em;
   color: black;
 }
 
 .contact-container > div {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.4em;
   align-items: center;
 }
 
