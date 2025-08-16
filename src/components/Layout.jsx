@@ -8,6 +8,7 @@ import Header from "./Header";
 import Resume from "./Resume";
 import Footer from "./Footer";
 import EducationForm from "./EducationForm";
+import LanguagesForm from "./LanguagesForm";
 
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
@@ -57,6 +58,12 @@ function Layout() {
           path="education"
           handleChange={handleChange}
           index={userData.education.length}
+        />
+        <LanguagesForm
+          addedLanguages={userData.languages}
+          path="languages"
+          handleChange={handleChange}
+          index={userData.languages.length}
         />
       </div>
       <Resume data={userData} />

@@ -13,7 +13,16 @@ function Resume({ data }) {
     <div className="preview">
       <div className="resume">
         <div className='side-area'>
-          <SideSection heading={"SUMMARY"}></SideSection>
+          <SideSection heading={"SUMMARY"} displayStatus={data.summary ? "shown" : "hidden"}>
+
+          </SideSection>
+          <SideSection heading={"LANGUAGES"} displayStatus={data.languages.length > 0 ? "shown" : "hidden"}>
+            <ul>
+              {data.languages.map(item => (
+                <li key={`language-${data.id}`}>• {item.language} {item.level && `- ${item.level}`}</li>
+              ))}
+            </ul>
+          </SideSection>
         </div>
         <div className="main-area">
           <div className='name-container'>
