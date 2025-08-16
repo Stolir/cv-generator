@@ -12,7 +12,7 @@ function FormInput({fieldName, label, handleChange, path, type, value, placehold
         placeholder={placeholder}
         readOnly={readOnly}
         onChange={(e) => {
-          if (path === "experience") {
+          if (path === "experience" || path === "education") {
             handleChange(fieldName, e.target.value)
           }
           else {
