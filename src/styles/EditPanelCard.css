@@ -13,6 +13,10 @@
   font-size: 1.1rem;
 }
 
+.information .jobTitle, .information .qualification {
+  font-weight: 700;
+}
+
 .title {
   font-weight: 600;
 }
@@ -37,8 +41,6 @@
     gap: 0.2rem;
   }
 }
-
-
 
 .controls button {
   background: none;
