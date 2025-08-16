@@ -1,6 +1,6 @@
-function SideSection({ heading, children }) {
+function SideSection({ heading, children, displayStatus }) {
   return (
-    <section className="side-section">
+    <section className={`side-section ${displayStatus}`}>
       <h1>{heading}</h1>
       <hr />
       <div className="details">
