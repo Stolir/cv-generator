@@ -7,6 +7,7 @@ import "../styles/Layout.css"
 import Header from "./Header";
 import Resume from "./Resume";
 import Footer from "./Footer";
+import EducationForm from "./EducationForm";
 
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
@@ -46,11 +47,16 @@ function Layout() {
           handleChange={handleChange}
         />
         <ExperienceForm
+          addedExperience={userData.experience}
           path="experience"
           handleChange={handleChange}
           index={userData.experience.length}
-          addedExperience={userData.experience}
-          handleDeletion={handleChange}
+        />
+        <EducationForm 
+          addedEducation={userData.education}
+          path="education"
+          handleChange={handleChange}
+          index={userData.education.length}
         />
       </div>
       <Resume data={userData} />
