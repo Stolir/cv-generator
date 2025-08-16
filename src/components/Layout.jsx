@@ -9,6 +9,9 @@ import Resume from "./Resume";
 import Footer from "./Footer";
 import EducationForm from "./EducationForm";
 import LanguagesForm from "./LanguagesForm";
+import SkillsForm from "./SkillsForm";
+import SummaryForm from "./SummaryForm";
+import CertificationsForm from "./CertificationsForm";
 
 function Layout() {
   const [userData, setUserData] = useState(defaultUserData);
@@ -64,6 +67,21 @@ function Layout() {
           path="languages"
           handleChange={handleChange}
           index={userData.languages.length}
+        />
+        <SkillsForm
+          userSkills={userData.skills}
+          path="skills"
+          handleChange={handleChange}
+        />
+        <SummaryForm
+          userSummary={userData.summary}
+          path="summary"
+          handleChange={handleChange}
+        />
+        <CertificationsForm
+          userCertifications={userData.certifications}
+          path="certifications"
+          handleChange={handleChange}
         />
       </div>
       <Resume data={userData} />
