@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  /* align-items: center; */
 }
 
 .forms-wrapper {
@@ -13,6 +14,13 @@
 
 .preview {
   padding: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .forms-wrapper {
+    margin: 0 auto;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -23,6 +31,8 @@
       "header header"
       "forms preview"
       "footer footer";
+    align-items: normal;
+
   }
 
   header {
