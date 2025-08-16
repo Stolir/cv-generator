@@ -96,13 +96,13 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
             placeholder={"Peace Enforcer"}
           />
           <FormInput 
-            fieldName="company"
-            label="Company"
+            fieldName="employer"
+            label="Employer"
             handleChange={handleChange}
             path={path}
             index={currentIndex}
             type="text"
-            value={userExperience.company}
+            value={userExperience.employer}
             placeholder={"Peace Maintainers Inc."}
           />
           <FormInput 
