@@ -13,6 +13,8 @@ function EditPanelCard({data, handleEdit, handleDelete, dataLabel}) {
   } else if (dataLabel === "education") {
     filteredData=(({ qualification, institution }) => ({ qualification, institution }))(data)
     date = formatDate(data.graduationDate)
+  } else if (dataLabel === "languages") {
+    filteredData=(({ language, level }) => ({ language, level }))(data);
   }
 
   return (
