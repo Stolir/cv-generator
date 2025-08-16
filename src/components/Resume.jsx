@@ -46,6 +46,18 @@ function Resume({ data }) {
               </div>
             ))}
           </MainSection>
+          <MainSection heading={"EDUCATION"}>
+            {data.education.map(item => (
+              <div key={`${item.id}-container`} className='education-card'>
+                <p key={`${item.id}-graduationDate`} className='date'>{formatDate(item.graduationDate)}</p>
+                <p key={`${item.id}-qualification`} className='qualification'>{item.qualification}</p>
+                <p key={`${item.id}-institution`} className='institution'>{item.institution} <span className='location'> | {item.location}</span></p>
+                <div key={`${item.id}-details-container`}>
+                  {formatDetails(item)}
+                </div>
+              </div>
+            ))}
+          </MainSection>
         </div>
       </div>
     </div>

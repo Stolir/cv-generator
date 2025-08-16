@@ -94,11 +94,11 @@
   padding-top: 0.7em;
 }
 
-.main-section .job-title, .main-section .date, .main-section .employer {
+.job-title,.main-section .date, .employer, .qualification, .institution {
   font-weight: 600;
 }
 
-.main-section .employer span {
+.main-section .employer span, .main-section .institution span {
   font-weight: 400;
 }
 
