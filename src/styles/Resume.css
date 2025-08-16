@@ -18,14 +18,14 @@
 
 .side-area {
   grid-area: side;
-  background-color: rgb(9, 115, 129);
+  background-color: rgb(24, 90, 116);
   color: white;
   gap: 2em;
 }
 
 .main-area {
   grid-area: main;
-  color: rgb(9, 115, 129);
+  color: rgb(24, 90, 116);
   gap: 1em;
 }
 
@@ -62,13 +62,12 @@
 }
 
 .main-area img {
-  width: 17px;
+  width: 15px;
 }
 
 .side-area .details, .main-area details {
   padding: 0.3em 0.1em;
 }
-
 
 .contact-container {
   display: flex;
@@ -85,4 +84,24 @@
 
 .contact-container .hidden {
   display: none;
+}
+
+.main-section .details {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding-top: 0.7em;
+}
+
+.main-section .job-title, .main-section .date, .main-section .employer {
+  font-weight: 600;
+}
+
+.main-section .employer span {
+  font-weight: 400;
+}
+
+.main-section .date {
+  font-weight: 600;
 }
