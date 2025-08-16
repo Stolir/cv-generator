@@ -1,15 +1,13 @@
-import CollapasibleCard from "./CollapsibleCard";
-import FormInput from "./FormInput";
-import { useState, useEffect } from "react";
-import FormTextArea from "./FormTextArea";
 import '../styles/ExperienceForm.css' 
+import CollapsibleCard from "./CollapsibleCard";
+import FormInput from "./FormInput";
+import FormTextArea from "./FormTextArea";
+import { useState, useEffect } from "react";
 import EditPanel from "./EditPanel";
 import { findIndexById } from "../utils/helper";
 import { set } from "lodash";
 
-function ExperienceForm({ addedExperience, handleChange, path }) {
-
-  const index = addedExperience.length;
+function ExperienceForm({ addedExperience, handleChange, path, index }) {
 
   const [editMode, setEditMode] = useState(false);
   
@@ -21,12 +19,8 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
     }
   }, [editMode, index]);
 
-    // experience information that's currently ediatble by the user. 
-  const [experienceId, setExperienceId] = useState(0)
-
-
   const [currentExperience, setCurrentExperience] = useState({
-    id: 0,
+    id: crypto.randomUUID(),
     jobTitle: '',
     employer: '',
     startDate: '',
@@ -51,9 +45,8 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
 
   const handleAddExperience = (index, id) => {
     handleChange(`experience[${index}]`, currentExperience)
-    setExperienceId(prevId => {
-      const newId = prevId + 1;
-      setCurrentExperience({
+    const newId = crypto.randomUUID();
+    setCurrentExperience({
       id: id ?? newId,
       jobTitle: '',
       employer: '',
@@ -61,8 +54,6 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
       endDate: '',
       location: '',
       details: ''
-      })
-      return newId;
     })
   }
 
@@ -98,22 +89,20 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
 
   useEffect(() => {
     setEndDateType(currentExperience.endDate === 'Current' ? 'text' : "month") 
-  })
+  }, [currentExperience.endDate])
 
   const [prevEndDate, setPrevEndDate] = useState(currentExperience.endDate)
 
-  const toggleEndDate = (e) => {
+  const toggleEndDate = () => {
     console.log(prevEndDate)
     if (endDateType === 'month') {
       setPrevEndDate(currentExperience.endDate)
-      e.target.value = 'Current'
-      handleChangeCurrentExperience('endDate', e.target.value)
+      handleChangeCurrentExperience('endDate', 'Current')
       setEndDateType('text')
     }
     else {
       setPrevEndDate(currentExperience.endDate)
-      e.target.value = prevEndDate;
-      handleChangeCurrentExperience('endDate', e.target.value)
+      handleChangeCurrentExperience('endDate', prevEndDate)
       setEndDateType('month')
     }
   }
@@ -134,7 +123,7 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
 
   return (
     <>
-      <CollapasibleCard header="Experience">
+      <CollapsibleCard header="Experience">
         <form onSubmit={(e) => {
           handleSubmit(e)
         }}>
@@ -180,9 +169,7 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
             />
             <div 
               className="checkbox-wrapper"
-              onClick={(e) => {
-                toggleEndDate(e)
-              }}
+              onClick={toggleEndDate}
             >
               <label>Current Position</label>
               <input
@@ -216,9 +203,10 @@ function ExperienceForm({ addedExperience, handleChange, path }) {
             <button type="submit">{editMode ? "Update" : "Add"}</button>
           </div>
         </form>
-      </CollapasibleCard>
+      </CollapsibleCard>
       <EditPanel 
-        addedExperience={addedExperience} 
+        addedData={addedExperience}
+        dataLabel={"experience"}
         toggleDisplay={toggleEditPanel}
         shown={editPanelStatus}
         handleEdit={toggleEditMode}

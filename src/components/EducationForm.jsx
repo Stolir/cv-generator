@@ -1,5 +1,4 @@
-import '../styles/EducationForm.css'
-import CollapasibleCard from './CollapsibleCard';
+import CollapsibleCard from './CollapsibleCard';
 import FormInput from './FormInput';
 import FormTextArea from './FormTextArea';
 import { useState, useEffect } from 'react';
@@ -19,12 +18,8 @@ function EducationForm({ addedEducation, path, handleChange, index }) {
     }
   }, [editMode, index]);
 
-  // education information that's currently ediatble by the user. 
-  const [educationId, setEducationId] = useState(0)
-
-
   const [currentEducation, setCurrentEducation] = useState({
-    id: 0,
+    id: crypto.randomUUID(),
     institution: '',
     location: '',
     qualification: '',
@@ -48,17 +43,14 @@ function EducationForm({ addedEducation, path, handleChange, index }) {
 
   const handleAddEducation = (index, id) => {
     handleChange(`education[${index}]`, currentEducation)
-    setEducationId(prevId => {
-      const newId = prevId + 1;
-      setCurrentEducation({
-        id: id ?? newId,
-        institution: '',
-        location: '',
-        qualification: '',
-        graduationDate: '',
-        details: '',
-      })
-      return newId;
+    const newId = crypto.randomUUID();
+    setCurrentEducation({
+      id: id ?? newId,
+      institution: '',
+      location: '',
+      qualification: '',
+      graduationDate: '',
+      details: '',
     })
   }
 
@@ -99,7 +91,7 @@ function EducationForm({ addedEducation, path, handleChange, index }) {
 
   return (
     <>
-      <CollapasibleCard header={"Education"}>
+      <CollapsibleCard header={"Education"}>
       <form onSubmit={handleSubmit}>
         <FormInput
           fieldName="institution"
@@ -154,7 +146,7 @@ function EducationForm({ addedEducation, path, handleChange, index }) {
             <button type="submit">{editMode ? "Update" : "Add"}</button>
           </div>
       </form>
-      </CollapasibleCard>
+      </CollapsibleCard>
       <EditPanel 
         addedData={addedEducation}
         dataLabel={"education"}
