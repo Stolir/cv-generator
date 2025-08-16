@@ -9,19 +9,19 @@ function FormTextArea({ children, fieldName, label, handleChange, path, value, p
 
   useEffect(() => {
     setText(value ? value : '')
-  })
+  }, [value])
 
   const textareaRef = useRef(null);
 
   const handleText = (e) => {
-  let newValue = e.target.value;
+    let newValue = e.target.value;
 
-  // Detect "- " and replace with "• "
-  if (newValue.endsWith('- ')) {
-    newValue = newValue.slice(0, -2) + '• ';
-  }
+    // Detect "- " and replace with "• "
+    if (newValue.endsWith('- ')) {
+      newValue = newValue.slice(0, -2) + '• ';
+    }
 
-    if (path === "experience") {
+    if (path === "experience" || path === "education") {
       handleChange(fieldName, newValue)
     }
     else {
@@ -31,7 +31,7 @@ function FormTextArea({ children, fieldName, label, handleChange, path, value, p
   }
 
   const handleNewLine = (e) => {
-       if (e.key === 'Enter') {
+      if (e.key === 'Enter') {
       e.preventDefault();
       const textarea = textareaRef.current;
       const { selectionStart, selectionEnd } = textarea;
