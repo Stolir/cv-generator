@@ -36,51 +36,6 @@ function Layout() {
     })
   }
 
-  // experience information that's currently ediatble by the user. 
-  const [experienceId, setExperienceId] = useState(0)
-
-
-  const [currentExperience, setCurrentExperience] = useState({
-    id: 0,
-    jobTitle: '',
-    employer: '',
-    startDate: '',
-    endDate: '',
-    location: '',
-    details: ''
-  })
-
-  // if passed item is object replace entire obj with new values otherwise edit specific field
-  const handleChangeCurrentExperience = (item, value) => {
-    if (typeof item === 'object' && item) {
-      setCurrentExperience(item)
-    } else {
-      setCurrentExperience((prev) => {
-      const copy = {...prev};
-      set(copy, item, value)
-      console.log(copy)
-      return copy;
-    })      
-    }
-  }
-
-  const handleAddExperience = (index, id) => {
-    handleChange(`experience[${index}]`, currentExperience)
-    setExperienceId(prevId => {
-      const newId = prevId + 1;
-      setCurrentExperience({
-      id: id ?? newId,
-      jobTitle: '',
-      employer: '',
-      startDate: '',
-      endDate: '',
-      location: '',
-      details: ''
-      })
-      return newId;
-    })
-  }
-
   return (
     <div id="layout">
       <Header></Header>
@@ -91,16 +46,14 @@ function Layout() {
           handleChange={handleChange}
         />
         <ExperienceForm
-          userExperience={currentExperience}
           path="experience"
-          handleChange={handleChangeCurrentExperience}
-          handleAdd={handleAddExperience}
+          handleChange={handleChange}
           index={userData.experience.length}
           addedExperience={userData.experience}
           handleDeletion={handleChange}
         />
       </div>
-      <Resume data={userData} currentExperience={currentExperience} />
+      <Resume data={userData} />
       <Footer />
     </div>
   )

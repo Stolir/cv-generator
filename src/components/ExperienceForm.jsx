@@ -5,12 +5,15 @@ import FormTextArea from "./FormTextArea";
 import '../styles/ExperienceForm.css' 
 import EditPanel from "./EditPanel";
 import { findIndexById } from "../utils/helper";
+import { set } from "lodash";
 
-function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, addedExperience, handleDeletion }) {
+function ExperienceForm({ addedExperience, handleChange, path }) {
 
-  const [currentIndex, setCurrentIndex] = useState(index)
+  const index = addedExperience.length;
 
   const [editMode, setEditMode] = useState(false);
+  
+  const [currentIndex, setCurrentIndex] = useState(index)
 
   useEffect(() => {
     if (!editMode) {
@@ -18,11 +21,56 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
     }
   }, [editMode, index]);
 
+    // experience information that's currently ediatble by the user. 
+  const [experienceId, setExperienceId] = useState(0)
+
+
+  const [currentExperience, setCurrentExperience] = useState({
+    id: 0,
+    jobTitle: '',
+    employer: '',
+    startDate: '',
+    endDate: '',
+    location: '',
+    details: ''
+  })
+
+  // if passed item is object replace entire obj with new values otherwise edit specific field
+  const handleChangeCurrentExperience = (item, value) => {
+    if (typeof item === 'object' && item) {
+      setCurrentExperience(item)
+    } else {
+      setCurrentExperience((prev) => {
+      const copy = {...prev};
+      set(copy, item, value)
+      console.log(copy)
+      return copy;
+    })      
+    }
+  }
+
+  const handleAddExperience = (index, id) => {
+    handleChange(`experience[${index}]`, currentExperience)
+    setExperienceId(prevId => {
+      const newId = prevId + 1;
+      setCurrentExperience({
+      id: id ?? newId,
+      jobTitle: '',
+      employer: '',
+      startDate: '',
+      endDate: '',
+      location: '',
+      details: ''
+      })
+      return newId;
+    })
+  }
+
   const toggleEditMode = (id) => {
     if (!editMode) {
       setEditMode(true)
       const editIndex = findIndexById(addedExperience, id)
-      handleChange(addedExperience[editIndex])
+      handleChangeCurrentExperience(addedExperience[editIndex])
       toggleEditPanel()
       setCurrentIndex(editIndex)
     } else {
@@ -33,7 +81,7 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleAdd(currentIndex)
+    handleAddExperience(currentIndex)
     setEndDateType('month')
     if (editMode) {
       toggleEditMode()
@@ -42,26 +90,30 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
 
   // handle toggling end date between a date and "current"
   const [endDateType, setEndDateType] = useState(() => {
-    if (userExperience.endDate === 'Current') {
+    if (currentExperience.endDate === 'Current') {
       return 'text'
     }
     else { return 'month'}
   })
 
-  const [prevEndDate, setPrevEndDate] = useState(userExperience.endDate)
+  useEffect(() => {
+    setEndDateType(currentExperience.endDate === 'Current' ? 'text' : "month") 
+  })
+
+  const [prevEndDate, setPrevEndDate] = useState(currentExperience.endDate)
 
   const toggleEndDate = (e) => {
     console.log(prevEndDate)
     if (endDateType === 'month') {
-      setPrevEndDate(userExperience.endDate)
+      setPrevEndDate(currentExperience.endDate)
       e.target.value = 'Current'
-      handleChange('endDate', e.target.value)
+      handleChangeCurrentExperience('endDate', e.target.value)
       setEndDateType('text')
     }
     else {
-      setPrevEndDate(userExperience.endDate)
+      setPrevEndDate(currentExperience.endDate)
       e.target.value = prevEndDate;
-      handleChange('endDate', e.target.value)
+      handleChangeCurrentExperience('endDate', e.target.value)
       setEndDateType('month')
     }
   }
@@ -77,8 +129,9 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
   const handleDelete = (id) => {
     const deleteIndex = findIndexById(addedExperience, id)
     console.log(deleteIndex)
-    handleDeletion(`${path}[${deleteIndex}]`, undefined)
+    handleChange(`${path}[${deleteIndex}]`, undefined)
   }
+
   return (
     <>
       <CollapasibleCard header="Experience">
@@ -88,41 +141,41 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
           <FormInput 
             fieldName="jobTitle"
             label="Job Title"
-            handleChange={handleChange}
+            handleChange={handleChangeCurrentExperience}
             path={path}
             index={currentIndex}
             type="text"
-            value={userExperience.jobTitle}
+            value={currentExperience.jobTitle}
             placeholder={"Peace Enforcer"}
           />
           <FormInput 
             fieldName="employer"
             label="Employer"
-            handleChange={handleChange}
+            handleChange={handleChangeCurrentExperience}
             path={path}
             index={currentIndex}
             type="text"
-            value={userExperience.employer}
+            value={currentExperience.employer}
             placeholder={"Peace Maintainers Inc."}
           />
           <FormInput 
             fieldName="startDate"
             label="Start Date"
-            handleChange={handleChange}
+            handleChange={handleChangeCurrentExperience}
             path={path}
             index={currentIndex}
             type="month"
-            value={userExperience.startDate}
+            value={currentExperience.startDate}
           />
           <div className="end-date">
             <FormInput
               fieldName="endDate"
               label="End Date"
-              handleChange={handleChange}
+              handleChange={handleChangeCurrentExperience}
               path={path}
               index={currentIndex}
               type={endDateType}
-              value={userExperience.endDate}
+              value={currentExperience.endDate}
               readOnly={endDateType === 'month' ? false : true}
             />
             <div 
@@ -142,20 +195,20 @@ function ExperienceForm({ userExperience, handleChange, handleAdd, path, index, 
           <FormInput 
             fieldName="location"
             label="Location"
-            handleChange={handleChange}
+            handleChange={handleChangeCurrentExperience}
             path={path}
             index={currentIndex}
             type="text"
-            value={userExperience.location}
+            value={currentExperience.location}
             placeholder={"Gotham, United States"}
           />
           <FormTextArea 
             fieldName="details"
             label="Details"
-            handleChange={handleChange}
+            handleChange={handleChangeCurrentExperience}
             path={path}
             index={currentIndex}
-            value={userExperience.details}
+            value={currentExperience.details}
             placeholder={"To insert new bullet point type '-' followed by a space, or press enter."}
           />
           <div className="form-controls">
