@@ -3,7 +3,7 @@
       return `${path}[${index}].${fieldName}`
     }
     else {
-      return `${path}.${fieldName}`
+      return `${path}${fieldName ? `.${fieldName}` : ""}`
     }
   }
 
@@ -33,6 +33,18 @@ export function formatDetails(data) {
     <>
       {items.map((item, index) => (
         <p key={`${data.id}-details-${index}`}>{item}</p>
+      ))}
+    </>
+  )
+}
+
+export function formatOneLiners(data, dataLabel) {
+  console.log(typeof data)
+  const items = data.split("\n");
+  return (
+    <>
+      {items.map((item, index) => (
+        <p key={`${dataLabel}-${index}`}>{item}</p>
       ))}
     </>
   )
