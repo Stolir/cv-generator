@@ -6,7 +6,6 @@ function SkillsForm({ userSkills, handleChange, path}) {
     <CollapasibleCard header="Skills">
       <form>
         <FormTextArea 
-          fieldName="skills"
           label="Skills"
           handleChange={handleChange}
           path={path}

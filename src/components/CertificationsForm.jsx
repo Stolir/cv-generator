@@ -6,7 +6,6 @@ function CertificationsForm({ userCertifications, handleChange, path}) {
     <CollapasibleCard header="Certifications">
       <form>
         <FormTextArea 
-          fieldName="certifications"
           label="Certifications"
           handleChange={handleChange}
           path={path}

@@ -6,7 +6,6 @@ function SummaryForm({ userSummary, handleChange, path}) {
     <CollapasibleCard header="Summary">
       <form>
         <FormTextArea 
-          fieldName="summary"
           label="Summary"
           handleChange={handleChange}
           path={path}
