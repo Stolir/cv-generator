@@ -2,9 +2,10 @@ import '../styles/Resume.css'
 import mailBlack from '../assets/mail-black.svg'
 import mapPinBlack from '../assets/map-pin-black.svg'
 import phoneBlack from '../assets/phone-black.svg'
+import defaultUser from '../assets/default-user.png'
 import MainSection from './MainSection';
 import SideSection from './SideSection';
-import { formatDate, formatDetails } from '../utils/helper';
+import { formatDate, formatDetails, formatOneLiners } from '../utils/helper';
 
 function Resume({ data }) {
   const address = data.contact.address;
@@ -13,13 +14,17 @@ function Resume({ data }) {
     <div className="preview">
       <div className="resume">
         <div className='side-area'>
-          <SideSection heading={"SUMMARY"} displayStatus={data.summary ? "shown" : "hidden"}>
-
+          <img src={defaultUser} alt="user icon" />
+          <SideSection heading={"SUMMARY"}>
+            {data.summary && formatOneLiners(data.summary, "summary")}
+          </SideSection>
+          <SideSection heading={"SKILLS"} displayStatus={data.skills ? "shown" : "hidden"}>
+            {data.skills && formatOneLiners(data.skills, "skills")}
           </SideSection>
           <SideSection heading={"LANGUAGES"} displayStatus={data.languages.length > 0 ? "shown" : "hidden"}>
             <ul>
               {data.languages.map(item => (
-                <li key={`language-${data.id}`}>• {item.language} {item.level && `- ${item.level}`}</li>
+                <li key={`language-${item.language}`}>• {item.language} {item.level && `- ${item.level}`}</li>
               ))}
             </ul>
           </SideSection>
@@ -66,6 +71,9 @@ function Resume({ data }) {
                 </div>
               </div>
             ))}
+          </MainSection>
+          <MainSection heading={"CERTIFICATIONS"} displayStatus={data.certifications ? "shown" : "hidden"}>
+            <div>{data.certifications && formatOneLiners(data.certifications, "certifications")}</div>
           </MainSection>
         </div>
       </div>

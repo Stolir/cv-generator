@@ -23,12 +23,16 @@
   background-color: rgb(24, 90, 116);
   color: white;
   gap: 2em;
+  width: 100%;
+  max-width: 200px;
 }
 
 .main-area {
   grid-area: main;
   color: rgb(24, 90, 116);
   gap: 1em;
+  width: 100%;
+  max-width: 350px;
 }
 
 .side-area, .main-area {
