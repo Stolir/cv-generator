@@ -1,6 +1,6 @@
 .resume {
   position: sticky;
-  top: 100px;
+  top: 20px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas: "side main";
@@ -10,12 +10,24 @@
   height: auto;
   box-shadow: 0 0 5px rgba(0,0,0,0.3);
   font-family: "Saira";
-  font-size: clamp(10px, 3vw, 1rem);
-  margin: 1rem auto;
+  font-size: 1rem;
+  margin: 3rem auto;
   /*A4 Aspect ratio*/
   aspect-ratio: 1 / 1.4142;
+  container-name: resume;
+  container-type: inline-size;
+}
 
+@container resume (max-width: 500px) {
+  .main-area, .side-area {
+    font-size: 0.65em !important;
+  }
+}
 
+@container resume (max-width: 450px) {
+  .main-area, .side-area {
+    font-size: 0.6em !important;
+  }
 }
 
 .side-area {
